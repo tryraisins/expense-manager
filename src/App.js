@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "tachyons";
+import React, { useState } from "react";
 
+import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
+import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+
+import "./App.css";
+import ParticlesBackground from "./Components/Particles/Particles";
+import Navigation from "./Components/Navigation/Navigation";
+import Logo from "./Components/Logo/Logo";
+import SignIn from "./Components/Sign In/SignIn";
+
+import Main from "./Components/Main/Main";
+import Reimburse from "./Components/Reimburse/Reimburse";
+import Scroll from "./Components/Scroll/Scroll";
 function App() {
+  const [state, setState] = useState("signin");
+
+  const stateUpdate = (newState) => {
+    setState(newState);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navigation changeState={stateUpdate} currentState={state}>
+        <Logo />
+      </Navigation>
+
+      {state === "signin" ? (
+        <div>
+          <ParticlesBackground />
+          <SignIn changeState={stateUpdate} />
+        </div>
+      ) : state === "signedin" ? (
+        <div className='vh vw'>
+          <Reimburse />
+          <Scroll>
+            <Main />
+          </Scroll>
+        </div>
+      ) : (
+        <h1>Unknown Error</h1>
+      )}
     </div>
   );
 }
