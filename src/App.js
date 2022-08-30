@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 
 import "./App.css";
-import ParticlesBackground from "./Components/Particles/Particles";
+
 import Navigation from "./Components/Navigation/Navigation";
 import Logo from "./Components/Logo/Logo";
 import SignIn from "./Components/Sign In/SignIn";
@@ -26,7 +26,6 @@ function App() {
 
       {state === "signin" ? (
         <div>
-          <ParticlesBackground />
           <SignIn changeState={stateUpdate} />
         </div>
       ) : state === "signedin" ? (
