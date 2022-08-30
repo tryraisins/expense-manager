@@ -47,7 +47,7 @@ const Main = () => {
   const columnDefs = [
     {
       field: "Date",
-      minWidth: 150,
+      minWidth: 180,
       filter: "agDateColumnFilter",
       filterParams: filterParams,
     },
