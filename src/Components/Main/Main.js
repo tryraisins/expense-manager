@@ -3,6 +3,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "./Main.css";
+const data = require("../../assets/MOCK_DATA.json");
 
 const filterParams = {
   comparator: (filterLocalDateAtMidnight, cellValue) => {
@@ -27,25 +28,41 @@ const filterParams = {
 
 const Main = () => {
   const [rowData, setRowData] = useState();
-  const data = require("../../assets/MOCK_DATA.json");
+  const getResult = () => {
+    const getInfo = data.map((arr, i) => {
+      if (arr.Frequency === "Never") {
+        let num = arr.Total;
+        num = Number(num.replace("$", ""));
+
+        return num;
+      } else {
+        return 0;
+      }
+    });
+    return getInfo;
+  };
+  const answer = getResult().reduce((init, current) => {
+    return init + current;
+  });
   const columnDefs = [
     {
-      field: "date",
-      minWidth: 170,
+      field: "Date",
+      minWidth: 150,
       filter: "agDateColumnFilter",
       filterParams: filterParams,
     },
     { field: "Merchant" },
     { field: "Total", filter: "agNumberColumnFilter" },
-    { field: "Payment Type" },
+    { field: "Payment Method" },
     { field: "Frequency" },
   ];
+
   const defaultColDef = useMemo(() => {
     return {
-      editable: true,
+      editable: false,
       sortable: true,
       flex: 1,
-      minWidth: 120,
+      minWidth: 100,
       filter: true,
       floatingFilter: false,
       resizable: true,
@@ -55,19 +72,31 @@ const Main = () => {
   const onGridReady = () => {
     setRowData(data);
   };
-
   return (
-    <div className='bg-white center h-100 w-100 tc '>
-      <div
-        className='ag-theme-alpine center tc'
-        style={{ width: "100%", height: "100%" }}
-      >
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          onGridReady={onGridReady}
-        ></AgGridReact>
+    <div>
+      <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
+        <h3 className='pa1'>Sum of Totals with Frequency: Never</h3>
+        <h4>${answer.toFixed(2)}</h4>
+      </div>
+      <div className='scrollborder fl bg-white' id='style-1'>
+        <div className='bg-white center h-100 w-100 tc relative'>
+          <div className='pa2 absolute bottom-0 right-2 z-max'>
+            <h1 className='f3  dim pa3 mb2 dib white bg-red br-100 pointer'>
+              <i class='fa-solid fa-plus'></i>
+            </h1>
+          </div>
+          <div
+            className='ag-theme-alpine center tc'
+            style={{ width: "100%", height: "100%" }}
+          >
+            <AgGridReact
+              rowData={rowData}
+              columnDefs={columnDefs}
+              defaultColDef={defaultColDef}
+              onGridReady={onGridReady}
+            ></AgGridReact>
+          </div>
+        </div>
       </div>
     </div>
   );

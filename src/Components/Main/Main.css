@@ -1,3 +1,61 @@
+/* SCROLL */
+.scrollborder {
+  overflow: scroll;
+  height: 100vh;
+  width: 100vw;
+}
+.scrollborder:hover .cover-bar {
+  opacity: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+#style-1::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: none;
+}
+
+#style-1::-webkit-scrollbar {
+  width: 13px;
+  background-color: none;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+/* MAIN CSS */
+
 .ag-header-cell-label {
   justify-content: center;
+}
+.ag-header-icon.ag-header-cell-menu-button {
+  opacity: 1 !important;
+}
+
+/*
+ * The override should be placed after the import of the theme.
+ * Alternatively, you can aso increase the selector's specificity.
+ */
+.ag-theme-alpine .ag-icon-desc,
+.ag-theme-alpine .ag-icon-asc,
+.ag-theme-alpine .ag-icon-menu {
+  font-family: "Font Awesome 5 Free";
+  /* FontAwesome uses font-weight bold */
+  font-weight: bold;
+}
+
+.ag-theme-alpine .ag-icon-desc::before {
+  content: "\f0d7";
+}
+
+.ag-theme-alpine .ag-icon-asc::before {
+  content: "\f0d8";
+}
+
+.ag-theme-alpine .ag-icon-menu::before {
+  content: "\f0b0";
 }

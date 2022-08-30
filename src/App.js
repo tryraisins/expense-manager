@@ -11,8 +11,7 @@ import Logo from "./Components/Logo/Logo";
 import SignIn from "./Components/Sign In/SignIn";
 
 import Main from "./Components/Main/Main";
-import Reimburse from "./Components/Reimburse/Reimburse";
-import Scroll from "./Components/Scroll/Scroll";
+
 function App() {
   const [state, setState] = useState("signin");
 
@@ -32,10 +31,7 @@ function App() {
         </div>
       ) : state === "signedin" ? (
         <div className='vh vw'>
-          <Reimburse />
-          <Scroll>
-            <Main />
-          </Scroll>
+          <Main />
         </div>
       ) : (
         <h1>Unknown Error</h1>
