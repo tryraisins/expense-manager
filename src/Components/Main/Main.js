@@ -33,12 +33,9 @@ const FormDataTemplate = Object.freeze({});
 const Main = ({ modal, ToggleModal }) => {
   const gridRef = useRef();
 
-  const getRowId = useMemo(() => {
-    return (params) => params.data.id;
-  }, []);
   //TABLE DATA STATE
 
-  const [rowData, setRowData] = useState(data);
+  const [rowData, setRowData] = useState();
 
   //MODAL STATE
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +43,7 @@ const Main = ({ modal, ToggleModal }) => {
     setIsOpen(true);
   };
   //FORM DATA STATE
+  const [newRow, setNewRow] = useState(false);
   const [formData, updateFormData] = useState(FormDataTemplate);
   const handleChange = (e) => {
     updateFormData({
@@ -58,12 +56,18 @@ const Main = ({ modal, ToggleModal }) => {
 
   //FORM SUBMIT EVENT
 
-  const handleSubmit = () => {
-    formData.id = rowData.length + 1;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     data.push(formData);
-  };
-  const handleSubmit3 = () => {
+
     updateFormData(FormDataTemplate);
+    if (newRow === false) {
+      setNewRow(true);
+    } else {
+      setNewRow(false);
+    }
+
     closeModal();
   };
 
@@ -121,10 +125,17 @@ const Main = ({ modal, ToggleModal }) => {
     });
     setRowData(firstData);
   };
+  const getRowId = useMemo(() => {
+    return (params) => params.data.id;
+  }, []);
 
   useEffect(() => {
-    onGridReady();
-  });
+    const firstData = data.map((obj, i) => {
+      return { id: i, ...obj };
+    });
+    setRowData(firstData);
+  }, [newRow]);
+  useEffect(() => {}, [newRow]);
 
   return (
     <div>
@@ -258,12 +269,7 @@ const Main = ({ modal, ToggleModal }) => {
                       className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 tc center'
                       type='submit'
                       value='Add Data'
-                      onClick={(event) => {
-                        event.preventDefault();
-                        handleSubmit();
-
-                        handleSubmit3();
-                      }}
+                      onClick={handleSubmit}
                     />
                   </div>
                 </form>
