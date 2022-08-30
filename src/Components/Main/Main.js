@@ -39,6 +39,9 @@ const FormDataTemplate = Object.freeze({
 const Main = ({ modal, ToggleModal }) => {
   const gridRef = useRef();
   const newData = data;
+  const getRowId = useMemo(() => {
+    return (params) => params.data.id;
+  }, []);
   //TABLE DATA STATE
 
   const [rowData, setRowData] = useState();
@@ -60,15 +63,16 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   //FORM SUBMIT EVENT
-  const handleSubmit = useCallback(() => {
-    newData.push(formData);
 
+  const handleSubmit2 = useCallback(() => {
     setRowData(newData);
     closeModal();
-  }, [formData, newData]);
-  // const handleSubmit2 = (event) =>{
-  //   event.preventDefault();
-  // }
+    updateFormData(FormDataTemplate);
+  }, [newData]);
+  const handleSubmit = () => {
+    formData.id = rowData.length + 1;
+    newData.push(formData);
+  };
 
   //
   const closeModal = () => {
@@ -123,8 +127,15 @@ const Main = ({ modal, ToggleModal }) => {
       return { id: i, ...obj };
     });
     setRowData(firstData);
-    console.log(firstData);
   };
+
+  // useEffect(() => {
+  //   if (isInitialMount.current) {
+  //     isInitialMount.current = false;
+  //   } else {
+  //   }
+  // });
+
   return (
     <div>
       <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
@@ -257,7 +268,11 @@ const Main = ({ modal, ToggleModal }) => {
                       className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 tc center'
                       type='submit'
                       value='Add Data'
-                      onClick={handleSubmit}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        handleSubmit();
+                        handleSubmit2();
+                      }}
                     />
                   </div>
                 </form>
@@ -285,6 +300,8 @@ const Main = ({ modal, ToggleModal }) => {
               defaultColDef={defaultColDef}
               ref={gridRef}
               onGridReady={onGridReady}
+              animateRows={true}
+              getRowId={getRowId}
             ></AgGridReact>
           </div>
         </div>
