@@ -47,13 +47,14 @@ const Main = () => {
   const columnDefs = [
     {
       field: "Date",
-      minWidth: 180,
+      minWidth: 140,
       filter: "agDateColumnFilter",
       filterParams: filterParams,
+      pinned: "left",
     },
     { field: "Merchant" },
     { field: "Total", filter: "agNumberColumnFilter" },
-    { field: "Payment Method" },
+    { field: "Payment Method", minWidth: 200 },
     { field: "Frequency" },
   ];
 
@@ -62,7 +63,7 @@ const Main = () => {
       editable: false,
       sortable: true,
       flex: 1,
-      minWidth: 100,
+      minWidth: 120,
       filter: true,
       floatingFilter: false,
       resizable: true,

@@ -4,7 +4,7 @@ const Navigation = ({ changeState, currentState }, props) => {
   return (
     <nav className='db dt-l w-100 border-box pa3 ph5-l'>
       {currentState === "signin" ? (
-        <h2 className='white-70 flex items-center tc '>Express Manager</h2>
+        <h2 className='white-70 flex items-center tc '>Expense Manager</h2>
       ) : currentState === "signedin" ? (
         <>
           <div className=' db dtc-l v-mid mid-gray w-100 w-50-l tc tl-l center mb2 mb0-l'>
