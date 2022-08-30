@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -37,9 +37,11 @@ const FormDataTemplate = Object.freeze({
 });
 
 const Main = ({ modal, ToggleModal }) => {
+  const gridRef = useRef();
+  const newData = data;
   //TABLE DATA STATE
 
-  let rowData = data;
+  const [rowData, setRowData] = useState();
 
   //MODAL STATE
   const [isOpen, setIsOpen] = useState(false);
@@ -58,13 +60,15 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   //FORM SUBMIT EVENT
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(() => {
+    newData.push(formData);
 
-    data.push(formData);
-
+    setRowData(newData);
     closeModal();
-  };
+  }, [formData, newData]);
+  // const handleSubmit2 = (event) =>{
+  //   event.preventDefault();
+  // }
 
   //
   const closeModal = () => {
@@ -114,10 +118,13 @@ const Main = ({ modal, ToggleModal }) => {
     };
   }, []);
 
-  // const onGridReady = () => {
-  //   setRowData(data);
-  // };
-
+  const onGridReady = () => {
+    const firstData = data.map((obj, i) => {
+      return { id: i, ...obj };
+    });
+    setRowData(firstData);
+    console.log(firstData);
+  };
   return (
     <div>
       <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
@@ -276,6 +283,8 @@ const Main = ({ modal, ToggleModal }) => {
               rowData={rowData}
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
+              ref={gridRef}
+              onGridReady={onGridReady}
             ></AgGridReact>
           </div>
         </div>

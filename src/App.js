@@ -20,6 +20,7 @@ function App() {
     setModal(state);
     console.log(`modal is now ${state}`);
   };
+
   return (
     <div>
       <Navigation changeState={stateUpdate} currentState={state}>
