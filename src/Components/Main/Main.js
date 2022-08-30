@@ -4,7 +4,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "./Main.css";
 import data from "../../assets/MOCK_DATA.json";
-import CurrencyInput from "react-currency-input-field";
 
 //MAIN  TABLE COMPONENT
 
@@ -29,19 +28,50 @@ const filterParams = {
   },
 };
 
-const Main = ({ modal, ToggleModal }) => {
-  //CURRENCY INPUT IN TOTAL
+const FormDataTemplate = Object.freeze({
+  Date: "",
+  Merchant: "",
+  Total: "",
+  "Payment Method": "",
+  Frequency: "",
+});
 
-  //TABLE DATA
-  const [rowData, setRowData] = useState();
+const Main = ({ modal, ToggleModal }) => {
+  //TABLE DATA STATE
+
+  let rowData = data;
+
+  //MODAL STATE
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
   };
+  //FORM DATA STATE
+  const [formData, updateFormData] = useState(FormDataTemplate);
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
 
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  //FORM SUBMIT EVENT
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    data.push(formData);
+
+    closeModal();
+  };
+
+  //
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  //
   const getResult = () => {
     const getInfo = data.map((arr, i) => {
       if (arr.Frequency === "Never") {
@@ -84,9 +114,10 @@ const Main = ({ modal, ToggleModal }) => {
     };
   }, []);
 
-  const onGridReady = () => {
-    setRowData(data);
-  };
+  // const onGridReady = () => {
+  //   setRowData(data);
+  // };
+
   return (
     <div>
       <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
@@ -112,7 +143,7 @@ const Main = ({ modal, ToggleModal }) => {
                 <form className='pa4 black-80'>
                   {/* DATE */}
                   <div className='measure  mb4'>
-                    <label for='date' className='f6 b db mb2'>
+                    <label htmlFor='date' className='f6 b db mb2'>
                       Date
                     </label>
                     <input
@@ -120,6 +151,8 @@ const Main = ({ modal, ToggleModal }) => {
                       className='input-reset ba b--black-20 pa2 mb2 db w-100'
                       type='date'
                       aria-describedby='name-desc'
+                      onChange={handleChange}
+                      name='Date'
                     />
                     <small id='name-desc' className='f6 black-60 db mb2'>
                       Add date of Transaction here
@@ -127,14 +160,16 @@ const Main = ({ modal, ToggleModal }) => {
                   </div>
                   {/* MERCHANT */}
                   <div className='measure  mb4'>
-                    <label for='merchant' className='f6 b db mb2'>
+                    <label htmlFor='merchant' className='f6 b db mb2'>
                       Merchant
                     </label>
                     <input
                       id='merchant'
-                      className='input-reset ba b--black-20 pa2 mb2 db w-100'
+                      className='input-reset ba b--black-20 pa2 h2 mb2 db w-100'
                       type='text'
                       aria-describedby='name-desc'
+                      onChange={handleChange}
+                      name='Merchant'
                     />
                     <small id='name-desc' className='f6 black-60 db mb2'>
                       Enter name of Merchant here
@@ -144,18 +179,19 @@ const Main = ({ modal, ToggleModal }) => {
                   {/* TOTAL */}
                   <div className='measure  mb4'>
                     <label htmlFor='total' className='f6 b db mb2'>
-                      Total <span class='normal black-60 b'> (In Dollars)</span>
+                      Total{" "}
+                      <span className='normal black-60 b'> (In Dollars)</span>
                     </label>
-                    <CurrencyInput
+
+                    <input
+                      type='number'
+                      prefix='$'
+                      onChange={handleChange}
+                      className='input-reset ba b--black-20 pa2 mb2 db w-100'
+                      name='Total'
                       id='total'
                       placeholder='$0.00'
-                      allowDecimals={true}
-                      decimalsLimit={2}
-                      prefix='$'
-                      onValueChange={(value, name) => console.log(value, name)}
-                      className='input-reset ba b--black-20 pa2 mb2 db w-100'
                     />
-
                     <small id='name-desc' className='f6 black-60 db mb2'>
                       Enter Amount Spent Here
                     </small>
@@ -163,7 +199,7 @@ const Main = ({ modal, ToggleModal }) => {
 
                   {/* PAYMENT METHOD */}
                   <div className='measure mb4'>
-                    <label for='payment-method' className='f6 b db mb2'>
+                    <label htmlFor='payment-method' className='f6 b db mb2'>
                       Payment Method{" "}
                     </label>
                     <input
@@ -171,6 +207,8 @@ const Main = ({ modal, ToggleModal }) => {
                       className='input-reset ba b--black-20 pa2 mb2 db w-100'
                       type='text'
                       aria-describedby='name-desc'
+                      onChange={handleChange}
+                      name='Payment Method'
                     />
                     <small id='name-desc' className='f6 black-60 db mb2 '>
                       Enter Credit Card Type
@@ -179,13 +217,21 @@ const Main = ({ modal, ToggleModal }) => {
 
                   {/* FREQUENCY */}
                   <div className='measure'>
-                    <label for='frequency' className='f6 b db mb2'>
+                    <label htmlFor='frequency' className='f6 b db mb2'>
                       Frequency
                     </label>
-                    <select id='frequency' name='frequency' className='pa2 mb2'>
+                    <select
+                      id='frequency'
+                      name='Frequency'
+                      className='pa2 mb2'
+                      onChange={handleChange}
+                    >
+                      <option value='' default={true}></option>
                       <option value='Daily'>Daily</option>
                       <option value='Monthly'>Monthly</option>
-                      <option value='Never'>Never</option>
+                      <option value='Never' default={true}>
+                        Never
+                      </option>
                       <option value='Often'>Often</option>
                       <option value='Once'>Once</option>
                       <option value='Seldom'>Seldom</option>
@@ -199,11 +245,12 @@ const Main = ({ modal, ToggleModal }) => {
                   </div>
 
                   {/* Add Button */}
-                  <div class='mt3'>
+                  <div className=' flex  mt5 center'>
                     <input
-                      class='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 center'
+                      className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 tc center'
                       type='submit'
                       value='Add Data'
+                      onClick={handleSubmit}
                     />
                   </div>
                 </form>
@@ -229,7 +276,6 @@ const Main = ({ modal, ToggleModal }) => {
               rowData={rowData}
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
-              onGridReady={onGridReady}
             ></AgGridReact>
           </div>
         </div>
