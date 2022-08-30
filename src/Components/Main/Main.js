@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useRef } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -28,23 +28,17 @@ const filterParams = {
   },
 };
 
-const FormDataTemplate = Object.freeze({
-  Date: "",
-  Merchant: "",
-  Total: "",
-  "Payment Method": "",
-  Frequency: "",
-});
+const FormDataTemplate = Object.freeze({});
 
 const Main = ({ modal, ToggleModal }) => {
   const gridRef = useRef();
-  const newData = data;
+
   const getRowId = useMemo(() => {
     return (params) => params.data.id;
   }, []);
   //TABLE DATA STATE
 
-  const [rowData, setRowData] = useState();
+  const [rowData, setRowData] = useState(data);
 
   //MODAL STATE
   const [isOpen, setIsOpen] = useState(false);
@@ -64,14 +58,13 @@ const Main = ({ modal, ToggleModal }) => {
 
   //FORM SUBMIT EVENT
 
-  const handleSubmit2 = useCallback(() => {
-    setRowData(newData);
-    closeModal();
-    updateFormData(FormDataTemplate);
-  }, [newData]);
   const handleSubmit = () => {
     formData.id = rowData.length + 1;
-    newData.push(formData);
+    data.push(formData);
+  };
+  const handleSubmit3 = () => {
+    updateFormData(FormDataTemplate);
+    closeModal();
   };
 
   //
@@ -129,12 +122,9 @@ const Main = ({ modal, ToggleModal }) => {
     setRowData(firstData);
   };
 
-  // useEffect(() => {
-  //   if (isInitialMount.current) {
-  //     isInitialMount.current = false;
-  //   } else {
-  //   }
-  // });
+  useEffect(() => {
+    onGridReady();
+  });
 
   return (
     <div>
@@ -271,7 +261,8 @@ const Main = ({ modal, ToggleModal }) => {
                       onClick={(event) => {
                         event.preventDefault();
                         handleSubmit();
-                        handleSubmit2();
+
+                        handleSubmit3();
                       }}
                     />
                   </div>
