@@ -76,15 +76,16 @@ const Main = () => {
     <div>
       <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
         <h3 className='pa1'>Sum of Totals with Frequency: Never</h3>
-        <h4>${answer.toFixed(2)}</h4>
+        <h4>${Intl.NumberFormat("en-US").format(answer.toFixed(2))}</h4>
       </div>
       <div className='scrollborder fl bg-white' id='style-1'>
         <div className='bg-white center h-100 w-100 tc relative'>
-          <div className='pa2 absolute bottom-0 right-2 z-max'>
+          {/* Button to add row */}
+          {/* <div className='pa2 absolute bottom-0 right-2 z-max'>
             <h1 className='f3  dim pa3 mb2 dib white bg-red br-100 pointer'>
               <i class='fa-solid fa-plus'></i>
             </h1>
-          </div>
+          </div> */}
           <div
             className='ag-theme-alpine center tc'
             style={{ width: "100%", height: "100%" }}
