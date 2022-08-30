@@ -77,7 +77,7 @@ const Main = () => {
     <div>
       <div className='fl w-100  pa2 bg-light-gray tc   bb b--black-20 '>
         <h3 className='pa1'>
-          Sum of Totals with Frequency: Never (This festure is equivalent to the
+          Sum of Totals with Frequency: Never (This feature is equivalent to the
           reimbursement sum feature in the sample page)
         </h3>
         <h4>${Intl.NumberFormat("en-US").format(answer.toFixed(2))}</h4>
