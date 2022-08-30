@@ -197,6 +197,15 @@ const Main = ({ modal, ToggleModal }) => {
                       Select Frequency of Transaction Here
                     </small>
                   </div>
+
+                  {/* Add Button */}
+                  <div class='mt3'>
+                    <input
+                      class='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 center'
+                      type='submit'
+                      value='Add Data'
+                    />
+                  </div>
                 </form>
               </main>
             </div>
