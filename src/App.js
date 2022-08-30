@@ -1,8 +1,6 @@
 import "tachyons";
 import React, { useState } from "react";
 
-
-
 import "./App.css";
 
 import Navigation from "./Components/Navigation/Navigation";
@@ -13,9 +11,14 @@ import Main from "./Components/Main/Main";
 
 function App() {
   const [state, setState] = useState("signin");
+  const [modal, setModal] = useState(false);
 
   const stateUpdate = (newState) => {
     setState(newState);
+  };
+  const ToggleModal = (state) => {
+    setModal(state);
+    console.log(`modal is now ${state}`);
   };
   return (
     <div>
@@ -28,8 +31,8 @@ function App() {
           <SignIn changeState={stateUpdate} />
         </div>
       ) : state === "signedin" ? (
-        <div className='vh vw'>
-          <Main />
+        <div>
+          <Main ToggleModal={ToggleModal} modal={modal} />
         </div>
       ) : (
         <h1>Unknown Error</h1>

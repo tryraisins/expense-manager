@@ -20,11 +20,11 @@ const Navigation = ({ changeState, currentState }, props) => {
               Business Analyst in Accounting Department
             </p>
             <p className='white f5 mt0'>
-              <i class='fa-solid fa-location-crosshairs mr1' />
+              <i className='fa-solid fa-location-crosshairs mr1' />
               Nigeria
             </p>
           </div>
-          <div class='db dtc-l v-mid w-100 w-50-l tc tr-l'>
+          <div className='db dtc-l v-mid w-100 w-50-l tc tr-l'>
             <h3
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("signin")}
