@@ -214,7 +214,7 @@ const Main = ({ modal, ToggleModal }) => {
 
         <div className='bg-white center h-100 w-100 tc relative'>
           <div
-            className='pa2 absolute bottom-0 right-2 z-9999'
+            className='pa2 fixed bottom-0 right-2 z-9999'
             onClick={openModal}
           >
             <p className='f3  dim pa3 mb2 dib white bg-red br-100 pointer'>
