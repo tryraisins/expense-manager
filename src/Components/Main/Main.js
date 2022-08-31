@@ -127,7 +127,6 @@ const Main = ({ modal, ToggleModal }) => {
     { field: "Total", filter: "agNumberColumnFilter" },
     { field: "Payment Method", minWidth: 200 },
     { field: "Frequency" },
-    { field: "Comments" },
   ];
 
   const defaultColDef = useMemo(() => {
