@@ -2,7 +2,7 @@ import profile from "../../assets/profile.webp";
 
 const Profile = () => {
   return (
-    <article className=' center h-50 w-25 bg-white br3 pa3 pa4-ns mv3 ba b--black-10'>
+    <article className=' center h-50 w-50 bg-white br3 pa3 pa4-ns mv3 ba b--black-10'>
       <div className='tc'>
         <img
           src={profile}
