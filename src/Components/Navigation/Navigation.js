@@ -7,9 +7,9 @@ const Navigation = ({ changeState, currentState }, props) => {
         <h2 className='white-70 flex items-center tc '>Expense Manager</h2>
       ) : currentState === "signedin" ? (
         <>
-          <div className='db dtc-l v-mid w-100 w-50-l tc tr-l'>
+          <div className='dtc v-mid mid-gray link dim w-25'>
             <h3
-              className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
+              className='white-70 bg-animate dim  pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("profile")}
             >
               My Profile
@@ -26,7 +26,7 @@ const Navigation = ({ changeState, currentState }, props) => {
         </>
       ) : currentState === "profile" ? (
         <>
-          <div className='db dtc-l v-mid w-100 w-50-l tc tr-l'>
+          <div className='dtc v-mid mid-gray link dim w-25'>
             <h3
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("signedin")}
