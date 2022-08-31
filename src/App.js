@@ -6,7 +6,7 @@ import "./App.css";
 import Navigation from "./Components/Navigation/Navigation";
 import Logo from "./Components/Logo/Logo";
 import SignIn from "./Components/Sign In/SignIn";
-
+import Profile from "./Components/Profile/Profile";
 import Main from "./Components/Main/Main";
 
 function App() {
@@ -34,6 +34,10 @@ function App() {
       ) : state === "signedin" ? (
         <div>
           <Main ToggleModal={ToggleModal} modal={modal} />
+        </div>
+      ) : state === "profile" ? (
+        <div>
+          <Profile />
         </div>
       ) : (
         <h1>Unknown Error</h1>
