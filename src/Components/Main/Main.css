@@ -1,6 +1,7 @@
 /* SCROLL */
 .scrollborder {
   overflow: scroll;
+
   height: 100vh;
   width: 100vw;
 }
@@ -34,6 +35,15 @@
 }
 .ag-header-icon.ag-header-cell-menu-button {
   opacity: 1 !important;
+}
+.ag-cell-focus,
+.ag-cell-no-focus {
+  border: none !important;
+}
+/* This CSS is to not apply the border for the column having 'no-border' class */
+.no-border.ag-cell:focus {
+  border: none !important;
+  outline: none;
 }
 
 /*
@@ -73,7 +83,7 @@
   justify-content: center;
 }
 
-.modal {
+.addrowmodal {
   position: fixed;
   z-index: 9999;
   background: #fff;
@@ -87,11 +97,18 @@
   overflow: auto;
 }
 
-.modal__header {
-  background: orangered;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
+.rowselectmodal {
+  position: fixed;
+  z-index: 9999;
+  background: #fff;
+  width: 45%;
+  border-radius: 0.5em;
+  /* Center the modal */
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 90%;
+  overflow: auto;
 }
 
 .close-button {
