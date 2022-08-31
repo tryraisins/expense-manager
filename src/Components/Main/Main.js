@@ -54,6 +54,7 @@ const Main = ({ modal, ToggleModal }) => {
   };
   const closeOnRowSelectModal = () => {
     setOnRowSelectModal(false);
+    setOnRowClickedState(false);
   };
 
   //ONSELECTEDROW DATA STATES
@@ -177,20 +178,29 @@ const Main = ({ modal, ToggleModal }) => {
     }
   }, [imageData]);
   useEffect(() => {
-    if (saved && rowID && imageUrl) {
+    if (saved && rowID && imageUrl && onRowClickedState) {
       const newData = rowData.map((obj) => obj);
       newData[rowID].Image = imageUrl;
       setRowData(newData);
       setSaved(false);
+      closeOnRowSelectModal();
     }
-    if (saved && rowID && newCommentsData) {
+
+    if (saved && rowID && newCommentsData && onRowClickedState) {
       const newData = rowData.map((obj) => obj);
       newData[rowID].Comments = newCommentsData;
       setRowData(newData);
       setSaved(false);
+      closeOnRowSelectModal();
     }
-  }, [saved, rowID, imageUrl, newCommentsData, rowData]);
-  useEffect(() => {}, [addRowModal, onRowSelectModal]);
+  }, [saved, rowID, imageUrl, newCommentsData, rowData, onRowClickedState]);
+
+  // useEffect(() => {
+  //   if (onRowClickedState) {
+
+  //   }
+  // }, [onRowClickedState]);
+
   const getSelectedRowData = () => {
     setSelectedRow(gridApi.getSelectedRows()[0]);
 
@@ -205,21 +215,15 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   const onRowClicked = () => {
+    setOnRowClickedState(true);
     getSelectedRowData();
     openOnRowSelectModal();
-    if (onRowClickedState) {
-      setOnRowClickedState(false);
-    } else {
-      setOnRowClickedState(true);
-    }
   };
   const saveImage = () => {
     if (newRowData) {
       setSaved(true);
       setNewRowData(false);
     }
-
-    closeOnRowSelectModal();
   };
   return (
     <div>
@@ -441,7 +445,10 @@ const Main = ({ modal, ToggleModal }) => {
                           type='text'
                           defaultValue={commentsData}
                           aria-describedby='name-desc'
-                          onChange={(e) => setNewCommentsData(e.target.value)}
+                          onChange={(e) => {
+                            setNewCommentsData(e.target.value);
+                            setNewRowData(true);
+                          }}
                         />
                       </div>
                     </li>
