@@ -190,7 +190,7 @@ const Main = ({ modal, ToggleModal }) => {
       setSaved(false);
     }
   }, [saved, rowID, imageUrl, newCommentsData, rowData]);
-
+  useEffect(() => {}, [addRowModal, onRowSelectModal]);
   const getSelectedRowData = () => {
     setSelectedRow(gridApi.getSelectedRows()[0]);
 
