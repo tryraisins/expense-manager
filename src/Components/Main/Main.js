@@ -29,14 +29,14 @@ const filterParams = {
   },
 };
 
-const FormDataTemplate = Object.freeze({});
+const FormDataTemplate = {};
 
 const Main = ({ modal, ToggleModal }) => {
   const gridRef = useRef();
 
   //TABLE DATA STATE
 
-  const [rowData, setRowData] = useState();
+  const [rowData, setRowData] = useState(data);
   const [gridApi, setGridApi] = useState();
 
   //MODAL STATES
@@ -63,11 +63,15 @@ const Main = ({ modal, ToggleModal }) => {
   const [totalData, setTotalData] = useState();
   const [paymentMethodData, setPaymentMethodData] = useState();
   const [frequencyData, setFrequencyData] = useState();
+  const [commentsData, setCommentsData] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [onRowClickedState, setOnRowClickedState] = useState(false);
   const [rowID, setRowID] = useState();
   const [saved, setSaved] = useState(false);
+  const [newCommentsData, setNewCommentsData] = useState(null);
+
+  const [newRowData, setNewRowData] = useState(false);
 
   //FORM DATA STATE
   const [newRow, setNewRow] = useState(false);
@@ -86,20 +90,17 @@ const Main = ({ modal, ToggleModal }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    data.push(formData);
-
-    updateFormData(FormDataTemplate);
-    if (newRow === false) {
-      setNewRow(true);
-    } else {
+    if (newRow) {
       setNewRow(false);
+    } else {
+      setNewRow(true);
     }
 
     closeAddRowModal();
   };
 
   const getResult = () => {
-    const getInfo = data.map((arr, i) => {
+    const getInfo = rowData.map((arr, i) => {
       if (arr.Frequency === "Never") {
         let num = arr.Total;
         num = Number(num.replace("$", ""));
@@ -117,7 +118,7 @@ const Main = ({ modal, ToggleModal }) => {
   const columnDefs = [
     {
       field: "Date",
-      minWidth: 140,
+      minWidth: 120,
       filter: "agDateColumnFilter",
       filterParams: filterParams,
       pinned: "left",
@@ -126,6 +127,7 @@ const Main = ({ modal, ToggleModal }) => {
     { field: "Total", filter: "agNumberColumnFilter" },
     { field: "Payment Method", minWidth: 200 },
     { field: "Frequency" },
+    { field: "Comments" },
   ];
 
   const defaultColDef = useMemo(() => {
@@ -144,7 +146,7 @@ const Main = ({ modal, ToggleModal }) => {
 
   const onGridReady = (params) => {
     const firstData = data.map((obj, i) => {
-      return { id: i, Image: receipt, ...obj };
+      return { id: i, Image: receipt, Comments: "", ...obj };
     });
     setRowData(firstData);
     setGridApi(params.api);
@@ -154,34 +156,41 @@ const Main = ({ modal, ToggleModal }) => {
   }, []);
 
   useEffect(() => {
-    const firstData = data.map((obj, i) => {
-      return { id: i, Image: receipt, ...obj };
-    });
-    setRowData(firstData);
-  }, [newRow]);
+    if (newRow && Object.keys(formData).length) {
+      const newData = rowData.map((obj) => obj);
+      formData.id = newData.length + 1;
+      formData.Image = receipt;
+
+      formData.Total = "$" + formData.Total;
+      formData.Comments = "";
+      newData.push(formData);
+      setRowData(newData);
+
+      updateFormData(FormDataTemplate);
+      setNewRow(false);
+    }
+  }, [newRow, imageUrl, getRowId, formData, rowData]);
   useEffect(() => {
     if (imageData) {
       setImageUrl(URL.createObjectURL(imageData));
-
+      setNewRowData(true);
       setImageData(null);
     }
   }, [imageData]);
   useEffect(() => {
-    const firstData = data.map((obj, i) => {
-      if (imageUrl && i === rowID && saved) {
-        return { id: i, Image: imageUrl, ...obj };
-      } else {
-        return { id: i, Image: receipt, ...obj };
-      }
-    });
-
-    if (saved) {
-      setTimeout(async () => {
-        await setRowData(firstData);
-        await setSaved(false);
-      }, 100);
+    if (saved && rowID && imageUrl) {
+      const newData = rowData.map((obj) => obj);
+      newData[rowID].Image = imageUrl;
+      setRowData(newData);
+      setSaved(false);
     }
-  }, [saved, rowID, imageUrl]);
+    if (saved && rowID && newCommentsData) {
+      const newData = rowData.map((obj) => obj);
+      newData[rowID].Comments = newCommentsData;
+      setRowData(newData);
+      setSaved(false);
+    }
+  }, [saved, rowID, imageUrl, newCommentsData, rowData]);
 
   const getSelectedRowData = () => {
     setSelectedRow(gridApi.getSelectedRows()[0]);
@@ -191,6 +200,7 @@ const Main = ({ modal, ToggleModal }) => {
     setDateData(selectedRow.Date);
     setPaymentMethodData(selectedRow["Payment Method"]);
     setFrequencyData(selectedRow.Frequency);
+    setCommentsData(selectedRow.Comments);
     setImageUrl(selectedRow.Image);
     setRowID(selectedRow.id * 1);
   };
@@ -205,7 +215,11 @@ const Main = ({ modal, ToggleModal }) => {
     }
   };
   const saveImage = () => {
-    setSaved(true);
+    if (newRowData) {
+      setSaved(true);
+      setNewRowData(false);
+    }
+
     closeOnRowSelectModal();
   };
   return (
@@ -426,7 +440,9 @@ const Main = ({ modal, ToggleModal }) => {
                           id='name'
                           className='input-reset ba b--black-20 pa2 mb2 h3 db w-100'
                           type='text'
+                          defaultValue={commentsData}
                           aria-describedby='name-desc'
+                          onChange={(e) => setNewCommentsData(e.target.value)}
                         />
                       </div>
                     </li>

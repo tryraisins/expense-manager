@@ -12,7 +12,7 @@ const Navigation = ({ changeState, currentState }, props) => {
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib'
               onClick={() => changeState("profile")}
             >
-              PROFILE
+              MY PROFILE
             </h3>
           </div>
           <div className='dtc v-mid w-50 tc  tr  '>
