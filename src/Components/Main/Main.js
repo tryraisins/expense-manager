@@ -64,9 +64,10 @@ const Main = ({ modal, ToggleModal }) => {
   const [paymentMethodData, setPaymentMethodData] = useState();
   const [frequencyData, setFrequencyData] = useState();
   const [imageData, setImageData] = useState(null);
-  const [imageUrl, setImageUrl] = useState(receipt);
+  const [imageUrl, setImageUrl] = useState(null);
   const [onRowClickedState, setOnRowClickedState] = useState(false);
   const [rowID, setRowID] = useState();
+  const [saved, setSaved] = useState(false);
 
   //FORM DATA STATE
   const [newRow, setNewRow] = useState(false);
@@ -143,7 +144,7 @@ const Main = ({ modal, ToggleModal }) => {
 
   const onGridReady = (params) => {
     const firstData = data.map((obj, i) => {
-      return { id: i, ...obj };
+      return { id: i, Image: receipt, ...obj };
     });
     setRowData(firstData);
     setGridApi(params.api);
@@ -154,22 +155,33 @@ const Main = ({ modal, ToggleModal }) => {
 
   useEffect(() => {
     const firstData = data.map((obj, i) => {
-      return { id: i, ...obj };
+      return { id: i, Image: receipt, ...obj };
     });
     setRowData(firstData);
   }, [newRow]);
   useEffect(() => {
     if (imageData) {
       setImageUrl(URL.createObjectURL(imageData));
-      const newData = rowData;
-      newData[rowID].Image = imageUrl;
-      setRowData(newData);
+
       setImageData(null);
     }
-  }, [imageData, selectedRow, imageUrl, rowID, rowData]);
+  }, [imageData]);
   useEffect(() => {
-    setImageUrl(receipt);
-  }, [onRowClickedState]);
+    const firstData = data.map((obj, i) => {
+      if (imageUrl && i === rowID && saved) {
+        return { id: i, Image: imageUrl, ...obj };
+      } else {
+        return { id: i, Image: receipt, ...obj };
+      }
+    });
+
+    if (saved) {
+      setTimeout(async () => {
+        await setRowData(firstData);
+        await setSaved(false);
+      }, 100);
+    }
+  }, [saved, rowID, imageUrl]);
 
   const getSelectedRowData = () => {
     setSelectedRow(gridApi.getSelectedRows()[0]);
@@ -191,6 +203,10 @@ const Main = ({ modal, ToggleModal }) => {
     } else {
       setOnRowClickedState(true);
     }
+  };
+  const saveImage = () => {
+    setSaved(true);
+    closeOnRowSelectModal();
   };
   return (
     <div>
@@ -367,60 +383,63 @@ const Main = ({ modal, ToggleModal }) => {
           <div className='rowselectmodal  ph2 dn di-l'>
             <main className=' db min-h-100 center '>
               <article className=' db min-h-100 '>
-                <div class='fl di pl3 w-50'>
+                <div className='fl di pl3 w-50'>
                   <h2>EXPENSES</h2>
-                  <ul class='list  black-50 pl0'>
-                    <li class='pa3  '>
-                      <b class='db f5 mb1 '>Merchant</b>
+                  <ul className='list  black-50 pl0'>
+                    <li className='pa3  '>
+                      <b className='db f5 mb1 '>Merchant</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {merchantData}
                       </span>
                     </li>
-                    <li class='pa3 '>
-                      <b class='db f5 mb1'>Total</b>
+                    <li className='pa3 '>
+                      <b className='db f5 mb1'>Total</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {totalData}
                       </span>
                     </li>
-                    <li class='pa3 '>
-                      <b class='db f5 mb1 '>Date</b>
+                    <li className='pa3 '>
+                      <b className='db f5 mb1 '>Date</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {dateData}
                       </span>
                     </li>
-                    <li class='pa3 '>
-                      <b class='db f5 mb1 '>Payment Method</b>
+                    <li className='pa3 '>
+                      <b className='db f5 mb1 '>Payment Method</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {paymentMethodData}
                       </span>
                     </li>
-                    <li class='pa3 '>
-                      <b class='db f5 mb1 '>Frequency</b>
+                    <li className='pa3 '>
+                      <b className='db f5 mb1 '>Frequency</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {frequencyData}
                       </span>
                     </li>
 
-                    <li class='pa3 '>
-                      <div class='measure'>
-                        <label for='name' class='f6 b db mb2'>
+                    <li className='pa3 '>
+                      <div className='measure'>
+                        <label htmlFor='name' className='f6 b db mb2'>
                           Comments
                         </label>
                         <input
                           id='name'
-                          class='input-reset ba b--black-20 pa2 mb2 h3 db w-100'
+                          className='input-reset ba b--black-20 pa2 mb2 h3 db w-100'
                           type='text'
                           aria-describedby='name-desc'
                         />
                       </div>
                     </li>
 
-                    <li class='fl  pa1 w-100 justify-between'>
-                      <p class='f5 fl b  link dim br3 ph3 pv2   dib white bg-blue'>
+                    <li className='fl  pa1 w-100 justify-between'>
+                      <p
+                        className='f5 fl b  link dim br3 ph3 pv2   dib white bg-blue'
+                        onClick={saveImage}
+                      >
                         Save
                       </p>
                       <p
-                        class='f5 fr b link dim br3 ph3 pv2  dib blue bg-light-gray pointer'
+                        className='f5 fr b link dim br3 ph3 pv2  dib blue bg-light-gray pointer'
                         onClick={closeOnRowSelectModal}
                       >
                         Cancel
@@ -428,10 +447,10 @@ const Main = ({ modal, ToggleModal }) => {
                     </li>
                   </ul>
                 </div>
-                <div class='fl di w-50  pa2 ma1  br2 ba  b--dashed b--black-30  center '>
-                  <article class='  overflow-auto dark-gray min-w-100 '>
+                <div className='fl di w-50  pa2 ma1  br2 ba  b--dashed b--black-30  center '>
+                  <article className='  overflow-auto dark-gray min-w-100 '>
                     <div className=' h-25'>
-                      <div class='flex mt1'>
+                      <div className='flex mt1'>
                         <input
                           accept='image/*'
                           type='file'
