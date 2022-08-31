@@ -87,7 +87,7 @@
   position: fixed;
   z-index: 9999;
   background: #fff;
-  width: 45%;
+
   border-radius: 0.5em;
   /* Center the modal */
   top: 50%;
@@ -101,14 +101,12 @@
   position: fixed;
   z-index: 9999;
   background: #fff;
-  width: 45%;
+
   border-radius: 0.5em;
   /* Center the modal */
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  height: 90%;
-  overflow: auto;
 }
 
 .close-button {

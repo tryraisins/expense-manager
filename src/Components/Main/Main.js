@@ -220,7 +220,7 @@ const Main = ({ modal, ToggleModal }) => {
       <div className='scrollborder fl bg-white' id='style-1'>
         <div className='bg-white center h-100 w-100 tc relative'>
           <div
-            className='pa2 fixed bottom-0 right-2 z-9999 dn db-l'
+            className='pa2 fixed bottom-0 right-2 z-9999  db'
             onClick={openAddRowModal}
           >
             <p className='f3  dim pa3 mb2 dib white bg-red br-100 pointer'>
@@ -250,7 +250,7 @@ const Main = ({ modal, ToggleModal }) => {
       {addRowModal && (
         <>
           <div className='overlay' />
-          <div className='addrowmodal '>
+          <div className='addrowmodal w-100 w-50-l'>
             <header className='flex justify-around'>
               <h2 className=' center '>ADD DATA</h2>
               <button onClick={closeAddRowModal} className='close-button  '>
@@ -379,45 +379,45 @@ const Main = ({ modal, ToggleModal }) => {
       {/* ON ROW SELECT MODAL */}
       {onRowSelectModal && (
         <>
-          <div className='overlay  dn db-l'></div>
-          <div className='rowselectmodal  ph2 dn di-l'>
-            <main className=' db min-h-100 center '>
-              <article className=' db min-h-100 '>
-                <div className='fl di pl3 w-50'>
+          <div className='overlay  db'></div>
+          <div className='rowselectmodal  ph2 h-75 w-100 w-50-l overflow-auto '>
+            <main className=' h-auto w-auto center '>
+              <article className=''>
+                <div className='fl di pl3 w-50 '>
                   <h2>EXPENSES</h2>
                   <ul className='list  black-50 pl0'>
-                    <li className='pa3  '>
+                    <li className='pv3 pr3 pl1 pl3-l  '>
                       <b className='db f5 mb1 '>Merchant</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {merchantData}
                       </span>
                     </li>
-                    <li className='pa3 '>
+                    <li className='pv3 pr3 pl1 pl3-l '>
                       <b className='db f5 mb1'>Total</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {totalData}
                       </span>
                     </li>
-                    <li className='pa3 '>
+                    <li className=' pv3 pr3 pl1 pl3-l'>
                       <b className='db f5 mb1 '>Date</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {dateData}
                       </span>
                     </li>
-                    <li className='pa3 '>
+                    <li className='pv3 pr3 pl1 pl3-l '>
                       <b className='db f5 mb1 '>Payment Method</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {paymentMethodData}
                       </span>
                     </li>
-                    <li className='pa3 '>
+                    <li className='pv3 pr3 pl1 pl3-l '>
                       <b className='db f5 mb1 '>Frequency</b>
                       <span className='f5 db pv1 ph2 lh-copy measure ba b--dashed b--black-30'>
                         {frequencyData}
                       </span>
                     </li>
 
-                    <li className='pa3 '>
+                    <li className='pv3 pr3 pl1 pl3-l '>
                       <div className='measure'>
                         <label htmlFor='name' className='f6 b db mb2'>
                           Comments
@@ -431,15 +431,17 @@ const Main = ({ modal, ToggleModal }) => {
                       </div>
                     </li>
 
-                    <li className='fl  pa1 w-100 justify-between'>
+                    <li className='    center  mb0 pv3 pr3 pl1 pl3-l  mt3-l       fl-l dib-l   '>
                       <p
-                        className='f5 fl b  link dim br3 ph3 pv2   dib white bg-blue'
+                        className='f5  ma0 dib link dim br3 w-100 ph3 pv2 w-100 tc     di-l white bg-blue'
                         onClick={saveImage}
                       >
                         Save
                       </p>
+                    </li>
+                    <li className='center  mb0 mt3-l pv3 pr3 pl1 pl3-l dib-l fr-l'>
                       <p
-                        className='f5 fr b link dim br3 ph3 pv2  dib blue bg-light-gray pointer'
+                        className='f5  dib ma0 b link dim br3 ph3 pv2 w-100 tc  di-l blue bg-light-gray pointer'
                         onClick={closeOnRowSelectModal}
                       >
                         Cancel
@@ -447,8 +449,8 @@ const Main = ({ modal, ToggleModal }) => {
                     </li>
                   </ul>
                 </div>
-                <div className='fl di w-50  pa2 ma1  br2 ba  b--dashed b--black-30  center '>
-                  <article className='  overflow-auto dark-gray min-w-100 '>
+                <div className='fr di w-50  pa2 ma1  br2 ba  b--dashed b--black-30  center '>
+                  <article className='   dark-gray min-w-100 '>
                     <div className=' h-25'>
                       <div className='flex mt1'>
                         <input

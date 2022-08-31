@@ -12,10 +12,10 @@ const Navigation = ({ changeState, currentState }, props) => {
               className='white-70 bg-animate dim  pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("profile")}
             >
-              My Profile
+              PROFILE
             </h3>
           </div>
-          <div className='db dtc-l v-mid w-100 w-50-l tc tr-l'>
+          <div className=' dtc v-mid w-100 w-50-l tc tr'>
             <h3
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("signin")}
@@ -31,10 +31,10 @@ const Navigation = ({ changeState, currentState }, props) => {
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("signedin")}
             >
-              Home
+              HOME
             </h3>
           </div>
-          <div className='db dtc-l v-mid w-100 w-50-l tc tr-l'>
+          <div className='dtc v-mid w-100 w-50-l tc tr'>
             <h3
               className='white-70 bg-animate dim pv2 ph4 center grow b--black-20 pointer dib mr3 mr4-l '
               onClick={() => changeState("signin")}
