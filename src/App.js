@@ -2,7 +2,7 @@ import "tachyons";
 import React, { useState } from "react";
 
 import "./App.css";
-
+import Particles from "./Components/Particles/Particles";
 import Navigation from "./Components/Navigation/Navigation";
 import Logo from "./Components/Logo/Logo";
 import SignIn from "./Components/Sign In/SignIn";
@@ -29,6 +29,7 @@ function App() {
 
       {state === "signin" ? (
         <div>
+          <Particles />
           <SignIn changeState={stateUpdate} />
         </div>
       ) : state === "signedin" ? (
