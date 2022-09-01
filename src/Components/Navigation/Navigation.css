@@ -1,0 +1,9 @@
+.nav {
+  height: 10vh;
+}
+
+@media only screen and (min-width: 1200px) {
+  .table {
+    height: 68.5vh;
+  }
+}

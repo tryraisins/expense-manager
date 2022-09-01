@@ -1,8 +1,9 @@
 import React from "react";
+import "./Navigation.css";
 
 const Navigation = ({ changeState, currentState }, props) => {
   return (
-    <nav className='dt w-100 border-box pa3 ph5-l'>
+    <nav className='dt w-100 border-box pa3 ph5-l nav'>
       {currentState === "signin" ? (
         <h2 className='white-70 flex items-center tc '>Expense Manager</h2>
       ) : currentState === "signedin" ? (
