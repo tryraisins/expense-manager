@@ -52,7 +52,7 @@ const Main = ({ modal, ToggleModal }) => {
 
   const [onRowSelectModal, setOnRowSelectModal] = useState(false);
   const openOnRowSelectModal = () => {
-    onRowClicked();
+    onSelectionChanged();
     setOnRowSelectModal(true);
   };
   const closeOnRowSelectModal = () => {
@@ -61,7 +61,7 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   //ONSELECTEDROW DATA STATES
-  // const [selectedRow, setSelectedRow] = useState();
+
   const [dateData, setDateData] = useState();
   const [merchantData, setMerchantData] = useState();
   const [totalData, setTotalData] = useState();
@@ -204,7 +204,7 @@ const Main = ({ modal, ToggleModal }) => {
   //   }
   // }, [onRowClickedState]);
 
-  const onRowClicked = () => {
+  const onSelectionChanged = () => {
     const selectedRow = gridApi.getSelectedRows()[0];
 
     setMerchantData(selectedRow.Merchant);
@@ -217,7 +217,7 @@ const Main = ({ modal, ToggleModal }) => {
     setRowID(selectedRow.id * 1);
   };
 
-  const onRowDoubleClicked = () => {
+  const onRowClicked = () => {
     openOnRowSelectModal();
     setOnRowClickedState(true);
   };
@@ -236,10 +236,10 @@ const Main = ({ modal, ToggleModal }) => {
         columnDefs={columnDefs}
         defaultColDef={defaultColDef}
         onGridReady={onGridReady}
-        onRowDoubleClicked={onRowDoubleClicked}
+        onRowClicked={onRowClicked}
         rowData={rowData}
         getRowId={getRowId}
-        onRowClicked={onRowClicked}
+        onSelectionChanged={onSelectionChanged}
       />
       <AddRowModal
         addRowModal={addRowModal}

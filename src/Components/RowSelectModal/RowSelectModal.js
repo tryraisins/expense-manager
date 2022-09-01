@@ -74,19 +74,19 @@ const RowSelectModal = ({
                       </div>
                     </li>
 
-                    <li className='    center  mb0 pv3 pr3 pl1 pl3-l  mt3-l       fl-l dib-l   '>
-                      <p
-                        className='f5  ma0 dib link dim br3 w-100 ph3 pv2 w-100 tc     di-l white bg-blue'
-                        onClick={saveImage}
-                      >
+                    <li
+                      className='    center  mb0 pv3 pr3 pl1 pl3-l  mt3-l       fl-l dib-l   '
+                      onClick={saveImage}
+                    >
+                      <p className='f5  ma0 dib link dim br3 w-100 ph3 pv2 w-100 tc     di-l white bg-blue'>
                         Save
                       </p>
                     </li>
-                    <li className='center  mb0 mt3-l pv3 pr3 pl1 pl3-l dib-l fr-l'>
-                      <p
-                        className='f5  dib ma0 b link dim br3 ph3 pv2 w-100 tc  di-l blue bg-light-gray pointer'
-                        onClick={closeOnRowSelectModal}
-                      >
+                    <li
+                      className='center  mb0 mt3-l pv3 pr3 pl1 pl3-l dib-l fr-l'
+                      onClick={closeOnRowSelectModal}
+                    >
+                      <p className='f5  dib ma0 b link dim br3 ph3 pv2 w-100 tc  di-l blue bg-light-gray pointer'>
                         Close
                       </p>
                     </li>

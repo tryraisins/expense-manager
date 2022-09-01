@@ -30,11 +30,10 @@ const SignIn = ({ changeState }) => {
               />
             </div>
           </fieldset>
-          <div className=''>
+          <div className='' onClick={() => changeState("signedin")}>
             <p
               className='b ph3 dim pv2 input-reset ba b--black bg-transparent grow pointer f5 dib'
               type='text'
-              onClick={() => changeState("signedin")}
             >
               Sign In
             </p>

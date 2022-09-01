@@ -7,10 +7,10 @@ const Table = ({
   columnDefs,
   defaultColDef,
   onGridReady,
-  onRowClicked,
+  onSelectionChanged,
   rowData,
   getRowId,
-  onRowDoubleClicked,
+  onRowClicked,
 }) => {
   return (
     <div>
@@ -39,11 +39,8 @@ const Table = ({
               defaultColDef={defaultColDef}
               ref={gridRef}
               rowSelection={"single"}
-              //   onRowDoubleClicked={onRowDoubleClicked}
-              //   onRowSelected={onRowClicked}
-              //   onRowClicked={onRowClicked}
-              onRowClicked={onRowDoubleClicked}
-              onSelectionChanged={onRowClicked}
+              onRowClicked={onRowClicked}
+              onSelectionChanged={onSelectionChanged}
               onGridReady={onGridReady}
               animateRows={true}
               getRowId={getRowId}
