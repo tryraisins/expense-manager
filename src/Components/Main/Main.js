@@ -8,6 +8,7 @@ import receipt from "../../assets/receipt.png";
 import AddRowModal from "../AddRowModal/AddRowModal";
 import RowSelectModal from "../RowSelectModal/RowSelectModal";
 import Table from "../Table/Table";
+
 //MAIN  TABLE COMPONENT
 
 const filterParams = {

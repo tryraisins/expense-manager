@@ -1,4 +1,6 @@
 import { AgGridReact } from "ag-grid-react";
+import Scroll from "../Scroll/Scroll";
+import AddRowButton from "../AddRowButton/AddRowButton";
 
 const Table = ({
   gridRef,
@@ -18,16 +20,9 @@ const Table = ({
         <h3 className='pa1'>Sum of Totals with Frequency: Never</h3>
         <h4>${Intl.NumberFormat("en-US").format(answer.toFixed(2))}</h4>
       </div>
-      <div className='scrollborder fl bg-white' id='style-1'>
+      <Scroll>
         <div className='bg-white center h-100 w-100 tc relative'>
-          <div
-            className='pa2 fixed bottom-0 right-2 z-9999  db'
-            onClick={openAddRowModal}
-          >
-            <p className='f3  dim pa3 mb2 dib white bg-red br-100 pointer'>
-              <i className='fa-solid fa-plus' />
-            </p>
-          </div>
+          <AddRowButton openAddRowModal={openAddRowModal} />
           <div
             className='ag-theme-alpine
           center tc'
@@ -47,10 +42,7 @@ const Table = ({
             ></AgGridReact>
           </div>
         </div>
-      </div>
-      {/* Modals */}
-
-      {/* ON ROW SELECT MODAL */}
+      </Scroll>
     </div>
   );
 };
