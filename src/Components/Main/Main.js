@@ -52,6 +52,7 @@ const Main = ({ modal, ToggleModal }) => {
 
   const [onRowSelectModal, setOnRowSelectModal] = useState(false);
   const openOnRowSelectModal = () => {
+    onRowClicked();
     setOnRowSelectModal(true);
   };
   const closeOnRowSelectModal = () => {
@@ -217,8 +218,6 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   const onRowDoubleClicked = () => {
-    onRowClicked();
-
     openOnRowSelectModal();
     setOnRowClickedState(true);
   };

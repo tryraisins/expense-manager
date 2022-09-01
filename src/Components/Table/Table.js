@@ -7,10 +7,10 @@ const Table = ({
   columnDefs,
   defaultColDef,
   onGridReady,
-  onRowDoubleClicked,
+  onRowClicked,
   rowData,
   getRowId,
-  onRowClicked,
+  onRowDoubleClicked,
 }) => {
   return (
     <div>
@@ -40,7 +40,10 @@ const Table = ({
               ref={gridRef}
               rowSelection={"single"}
               onRowDoubleClicked={onRowDoubleClicked}
+              onRowSelected={onRowClicked}
               onRowClicked={onRowClicked}
+              //   onRowClicked={onRowDoubleClicked}
+              onSelectionChanged={onRowClicked}
               onGridReady={onGridReady}
               animateRows={true}
               getRowId={getRowId}
@@ -48,6 +51,9 @@ const Table = ({
           </div>
         </div>
       </div>
+      {/* Modals */}
+
+      {/* ON ROW SELECT MODAL */}
     </div>
   );
 };
