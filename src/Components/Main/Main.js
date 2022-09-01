@@ -41,16 +41,18 @@ const Main = ({ modal, ToggleModal }) => {
   const [rowData, setRowData] = useState(data);
   const [gridApi, setGridApi] = useState();
 
-  //MODAL STATES
+  //ADDMODAL STATES
   const [addRowModal, setAddRowModal] = useState(false);
+
   const openAddRowModal = () => {
     setAddRowModal(true);
   };
   const closeAddRowModal = () => {
     setAddRowModal(false);
   };
-
+  //OnRowSelect Modal States
   const [onRowSelectModal, setOnRowSelectModal] = useState(false);
+
   const openOnRowSelectModal = () => {
     onSelectionChanged();
     setOnRowSelectModal(true);
