@@ -61,7 +61,7 @@ const Main = ({ modal, ToggleModal }) => {
   };
 
   //ONSELECTEDROW DATA STATES
-  const [selectedRow, setSelectedRow] = useState();
+  // const [selectedRow, setSelectedRow] = useState();
   const [dateData, setDateData] = useState();
   const [merchantData, setMerchantData] = useState();
   const [totalData, setTotalData] = useState();
@@ -205,7 +205,7 @@ const Main = ({ modal, ToggleModal }) => {
   // }, [onRowClickedState]);
 
   const onRowClicked = () => {
-    setSelectedRow(gridApi.getSelectedRows()[0]);
+    const selectedRow = gridApi.getSelectedRows()[0];
 
     setMerchantData(selectedRow.Merchant);
     setTotalData(selectedRow.Total);
