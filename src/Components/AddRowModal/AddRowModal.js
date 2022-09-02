@@ -124,7 +124,7 @@ const AddRowModal = ({
                 {/* Add Button */}
                 <div className=' flex  mt3 center'>
                   <input
-                    className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 tc center'
+                    className='b ph3 pv2 input-reset    br3 pointer f6 tc center  white bg-blue'
                     type='submit'
                     value='ADD DATA'
                     onClick={handleSubmit}
