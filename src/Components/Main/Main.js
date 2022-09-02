@@ -147,6 +147,7 @@ const Main = ({ modal, ToggleModal }) => {
       resizable: true,
       suppressNavigable: true,
       cellClass: "no-border",
+      suppressMovable: true,
     };
   }, []);
 
