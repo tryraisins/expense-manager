@@ -150,7 +150,7 @@ const Main = ({ modal, ToggleModal }) => {
 
       valueFormatter: currencyFormatter,
     },
-    { field: "Payment Method", minWidth: 200 },
+    { field: "Payment Method" },
     { field: "Frequency" },
   ];
 
@@ -159,7 +159,7 @@ const Main = ({ modal, ToggleModal }) => {
       editable: false,
       sortable: true,
       flex: 1,
-      minWidth: 120,
+      minWidth: 200,
       filter: true,
       resizable: true,
       suppressNavigable: true,
