@@ -122,6 +122,20 @@ const Main = ({ modal, ToggleModal }) => {
   const answer = getResult().reduce((init, current) => {
     return init + current;
   });
+  function formatNumber(number) {
+    number = Number(number.replace("$", ""));
+    number = number.toFixed(2);
+    console.log("1 " + number);
+    number = number.toString();
+    number = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    console.log("2 " + number);
+
+    return number;
+  }
+  function currencyFormatter(params) {
+    return "$" + formatNumber(params.value);
+  }
+
   const columnDefs = [
     {
       field: "Date",
@@ -131,7 +145,11 @@ const Main = ({ modal, ToggleModal }) => {
       pinned: "left",
     },
     { field: "Merchant" },
-    { field: "Total", filter: "agNumberColumnFilter" },
+    {
+      field: "Total",
+
+      valueFormatter: currencyFormatter,
+    },
     { field: "Payment Method", minWidth: 200 },
     { field: "Frequency" },
   ];
@@ -143,11 +161,15 @@ const Main = ({ modal, ToggleModal }) => {
       flex: 1,
       minWidth: 120,
       filter: true,
-      floatingFilter: false,
       resizable: true,
       suppressNavigable: true,
       cellClass: "no-border",
       suppressMovable: true,
+      floatingFilter: true,
+      suppressMenu: true,
+      filterParams: {
+        suppressAndOrCondition: true,
+      },
     };
   }, []);
 
@@ -167,8 +189,7 @@ const Main = ({ modal, ToggleModal }) => {
       const newData = rowData.map((obj) => obj);
       formData.id = newData.length + 1;
       formData.Image = receipt;
-
-      formData.Total = "$" + formData.Total;
+      // formData.Total = formData.Total.toString();
       formData.Comments = "";
       newData.push(formData);
       setRowData(newData);

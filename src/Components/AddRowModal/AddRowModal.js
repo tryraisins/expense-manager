@@ -62,7 +62,7 @@ const AddRowModal = ({
 
                   <input
                     type='number'
-                    prefix='$'
+                    // prefix='$'
                     onChange={handleChange}
                     className='input-reset ba b--black-20 pa2 mb2 db w-100'
                     name='Total'

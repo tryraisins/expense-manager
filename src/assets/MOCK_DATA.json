@@ -1,20 +1,142 @@
-[{"Date":"12/22/2021","Merchant":"Stringtough","Total":"$333.49","Payment Method":"jcb","Frequency":"Daily"},
-{"Date":"10/04/2021","Merchant":"Latlux","Total":"$522.33","Payment Method":"jcb","Frequency":"Yearly"},
-{"Date":"12/01/2021","Merchant":"Flexidy","Total":"$788.17","Payment Method":"diners-club-carte-blanche","Frequency":"Seldom"},
-{"Date":"10/23/2021","Merchant":"Flowdesk","Total":"$236.06","Payment Method":"mastercard","Frequency":"Yearly"},
-{"Date":"12/23/2021","Merchant":"Zamit","Total":"$604.68","Payment Method":"switch","Frequency":"Weekly"},
-{"Date":"01/30/2022","Merchant":"Vagram","Total":"$236.83","Payment Method":"switch","Frequency":"Often"},
-{"Date":"10/08/2021","Merchant":"Job","Total":"$927.43","Payment Method":"diners-club-enroute","Frequency":"Never"},
-{"Date":"07/27/2022","Merchant":"Zamit","Total":"$626.67","Payment Method":"mastercard","Frequency":"Daily"},
-{"Date":"12/13/2021","Merchant":"Ventosanzap","Total":"$279.73","Payment Method":"americanexpress","Frequency":"Daily"},
-{"Date":"07/05/2022","Merchant":"Aerified","Total":"$327.71","Payment Method":"switch","Frequency":"Weekly"},
-{"Date":"12/24/2021","Merchant":"Greenlam","Total":"$800.24","Payment Method":"visa-electron","Frequency":"Yearly"},
-{"Date":"01/11/2022","Merchant":"Lotstring","Total":"$536.82","Payment Method":"mastercard","Frequency":"Never"},
-{"Date":"03/01/2022","Merchant":"Duobam","Total":"$224.25","Payment Method":"mastercard","Frequency":"Yearly"},
-{"Date":"03/30/2022","Merchant":"Zoolab","Total":"$745.80","Payment Method":"china-unionpay","Frequency":"Seldom"},
-{"Date":"04/19/2022","Merchant":"Konklux","Total":"$464.47","Payment Method":"jcb","Frequency":"Never"},
-{"Date":"09/04/2021","Merchant":"Greenlam","Total":"$759.02","Payment Method":"jcb","Frequency":"Daily"},
-{"Date":"01/09/2022","Merchant":"Quo Lux","Total":"$104.11","Payment Method":"visa-electron","Frequency":"Once"},
-{"Date":"05/19/2022","Merchant":"Span","Total":"$783.10","Payment Method":"jcb","Frequency":"Yearly"},
-{"Date":"09/06/2021","Merchant":"Pannier","Total":"$534.18","Payment Method":"bankcard","Frequency":"Weekly"},
-{"Date":"10/06/2021","Merchant":"Temp","Total":"$750.72","Payment Method":"mastercard","Frequency":"Never"}]
+[
+  {
+    "Date": "12/22/2021",
+    "Merchant": "Stringtough",
+    "Total": "$3303.49",
+    "Payment Method": "jcb",
+    "Frequency": "Daily"
+  },
+  {
+    "Date": "10/04/2021",
+    "Merchant": "Latlux",
+    "Total": "$522.33",
+    "Payment Method": "jcb",
+    "Frequency": "Yearly"
+  },
+  {
+    "Date": "12/01/2021",
+    "Merchant": "Flexidy",
+    "Total": "$788.17",
+    "Payment Method": "diners-club-carte-blanche",
+    "Frequency": "Seldom"
+  },
+  {
+    "Date": "10/23/2021",
+    "Merchant": "Flowdesk",
+    "Total": "$236.06",
+    "Payment Method": "mastercard",
+    "Frequency": "Yearly"
+  },
+  {
+    "Date": "12/23/2021",
+    "Merchant": "Zamit",
+    "Total": "$604.68",
+    "Payment Method": "switch",
+    "Frequency": "Weekly"
+  },
+  {
+    "Date": "01/30/2022",
+    "Merchant": "Vagram",
+    "Total": "$236.83",
+    "Payment Method": "switch",
+    "Frequency": "Often"
+  },
+  {
+    "Date": "10/08/2021",
+    "Merchant": "Job",
+    "Total": "$927.43",
+    "Payment Method": "diners-club-enroute",
+    "Frequency": "Never"
+  },
+  {
+    "Date": "07/27/2022",
+    "Merchant": "Zamit",
+    "Total": "$626.67",
+    "Payment Method": "mastercard",
+    "Frequency": "Daily"
+  },
+  {
+    "Date": "12/13/2021",
+    "Merchant": "Ventosanzap",
+    "Total": "$279.73",
+    "Payment Method": "americanexpress",
+    "Frequency": "Daily"
+  },
+  {
+    "Date": "07/05/2022",
+    "Merchant": "Aerified",
+    "Total": "$327.71",
+    "Payment Method": "switch",
+    "Frequency": "Weekly"
+  },
+  {
+    "Date": "12/24/2021",
+    "Merchant": "Greenlam",
+    "Total": "$800.24",
+    "Payment Method": "visa-electron",
+    "Frequency": "Yearly"
+  },
+  {
+    "Date": "01/11/2022",
+    "Merchant": "Lotstring",
+    "Total": "$536.82",
+    "Payment Method": "mastercard",
+    "Frequency": "Never"
+  },
+  {
+    "Date": "03/01/2022",
+    "Merchant": "Duobam",
+    "Total": "$224.25",
+    "Payment Method": "mastercard",
+    "Frequency": "Yearly"
+  },
+  {
+    "Date": "03/30/2022",
+    "Merchant": "Zoolab",
+    "Total": "$745.80",
+    "Payment Method": "china-unionpay",
+    "Frequency": "Seldom"
+  },
+  {
+    "Date": "04/19/2022",
+    "Merchant": "Konklux",
+    "Total": "$464.47",
+    "Payment Method": "jcb",
+    "Frequency": "Never"
+  },
+  {
+    "Date": "09/04/2021",
+    "Merchant": "Greenlam",
+    "Total": "$759.02",
+    "Payment Method": "jcb",
+    "Frequency": "Daily"
+  },
+  {
+    "Date": "01/09/2022",
+    "Merchant": "Quo Lux",
+    "Total": "$104.11",
+    "Payment Method": "visa-electron",
+    "Frequency": "Once"
+  },
+  {
+    "Date": "05/19/2022",
+    "Merchant": "Span",
+    "Total": "$783.10",
+    "Payment Method": "jcb",
+    "Frequency": "Yearly"
+  },
+  {
+    "Date": "09/06/2021",
+    "Merchant": "Pannier",
+    "Total": "$534.18",
+    "Payment Method": "bankcard",
+    "Frequency": "Weekly"
+  },
+  {
+    "Date": "10/06/2021",
+    "Merchant": "Temp",
+    "Total": "$750.72",
+    "Payment Method": "mastercard",
+    "Frequency": "Never"
+  }
+]
