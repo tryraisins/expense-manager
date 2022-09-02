@@ -167,9 +167,7 @@ const Main = ({ modal, ToggleModal }) => {
       suppressMovable: true,
       floatingFilter: true,
       suppressMenu: true,
-      filterParams: {
-        suppressAndOrCondition: true,
-      },
+      unSortIcon: true,
     };
   }, []);
 

@@ -24,7 +24,7 @@
 .ag-theme-alpine .ag-icon-asc,
 .ag-theme-alpine .ag-icon-menu {
   font-family: "Font Awesome 5 Free";
-  /* FontAwesome uses font-weight bold */
+
   font-weight: bold;
 }
 
