@@ -21,7 +21,7 @@ const Table = ({
         <h4>${Intl.NumberFormat("en-US").format(answer.toFixed(2))}</h4>
       </div>
 
-      <div className='bg-white center w-100 tc relative table ma0'>
+      <div className='bg-light-gray center w-100 tc relative table ma0'>
         <AddRowButton openAddRowModal={openAddRowModal} />
         <div
           className='ag-theme-alpine

@@ -1,0 +1,13 @@
+.profile {
+  height: 83.5vh;
+}
+
+.card {
+  margin: 0;
+
+  top: 40%;
+  left: 50%;
+
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

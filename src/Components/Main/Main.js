@@ -125,10 +125,9 @@ const Main = ({ modal, ToggleModal }) => {
   function formatNumber(number) {
     number = Number(number.replace("$", ""));
     number = number.toFixed(2);
-    console.log("1 " + number);
+
     number = number.toString();
     number = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    console.log("2 " + number);
 
     return number;
   }
