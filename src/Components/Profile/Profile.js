@@ -3,7 +3,7 @@ import "./Profile.css";
 
 const Profile = () => {
   return (
-    <div className='bg-near-white w-100   profile relative'>
+    <div className=' w-100   profile relative'>
       <div className='w-90 w-40-l br4 ba b--moon-gray card absolute'>
         <article className='cf  '>
           <article className='  br--top br4 br--moon-gray bg-near-white mv0 bg-moon-gray   '>
@@ -14,7 +14,7 @@ const Profile = () => {
                 title='Profile Image'
                 alt='Profile'
               />
-              <h1 className='f3 black-90 mb2'>Seun Sowemimo</h1>
+              <h1 className='f3 black-90 mb0 pb2'>Seun Sowemimo</h1>
             </div>
           </article>
           <article className='  mv0 tc br--bottom br4 bg-moon-gray '>

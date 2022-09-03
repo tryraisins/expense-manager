@@ -38,6 +38,7 @@ function App() {
         </div>
       ) : state === "profile" ? (
         <div>
+          <Particles />
           <Profile />
         </div>
       ) : (
